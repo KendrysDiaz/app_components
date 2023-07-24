@@ -20,7 +20,6 @@ class HomePageTemp extends StatelessWidget {
               subtitle: const Text('Numeros'),
               leading: const Icon(Icons.emergency_sharp),
               trailing: const Icon(Icons.arrow_right),
-              onTap: () => {},
             ))
         .toList();
   }
