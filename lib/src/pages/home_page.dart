@@ -1,4 +1,5 @@
 import 'package:app_components/src/providers/menu_provider.dart';
+import 'package:app_components/src/utils/icon_string_util.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
       initialData: const [],
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         return ListView(
-          children: _listItems(snapshot.data!),
+          children: _listItems(snapshot.data!, context),
         );
       },
     );
@@ -28,15 +29,17 @@ class HomePage extends StatelessWidget {
     // );
   }
 
-  List<Widget> _listItems(List<dynamic> data) {
+  List<Widget> _listItems(List<dynamic> data, BuildContext context) {
     final List<Widget> opciones = [];
     for (var opt in data) {
       if (opt.containsKey('texto')) {
         final widgetTemp = ListTile(
           title: Text(opt['texto']),
-          leading: const Icon(Icons.circle),
+          leading: getIcon(opt['icon']),
           trailing: const Icon(Icons.arrow_right),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, opt['ruta']);
+          },
         );
         opciones.add(widgetTemp);
       }
@@ -44,4 +47,5 @@ class HomePage extends StatelessWidget {
 
     return opciones;
   }
+
 }

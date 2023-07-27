@@ -1,3 +1,5 @@
+import 'package:app_components/src/pages/alert_page.dart';
+import 'package:app_components/src/pages/avatar_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_components/src/pages/home_page.dart';
@@ -9,10 +11,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Componentes App',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (context) => const HomePage(),
+        'alert': (context) => const AlertPage(),
+        'avatar': (context) => const AvatarPage(),
+      },
     );
   }
 }
